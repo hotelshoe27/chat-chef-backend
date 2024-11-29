@@ -1,3 +1,4 @@
+import OpenAI from "openai";
 import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
@@ -15,6 +16,11 @@ app.use(express.urlencoded({extended: true}));
 // set env
 const __dirname = path.resolve();
 dotenv.config({ path: __dirname + "/.env" });
+
+// set openai info
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
 
 // test code
 app.get('/test', async(req, res) => {
